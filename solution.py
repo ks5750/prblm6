@@ -1,13 +1,8 @@
 #! /usr/bin/env python3
 
-import cryptography
-import nacl.secret
-from nacl.secret import SecretBox
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
 from nacl.public import PrivateKey, Box
 from nacl.public import PublicKey
-from nacl.secret import SecretBox
 from nacl.signing import SigningKey
 import sys
 import json
