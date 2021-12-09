@@ -95,7 +95,7 @@ candidates=input5_array["candidates"]
 their_public_key = VerifyKey(signing_public_key)
 their_public_key.encode()
 for x in candidates:
-    print(x)
+
     try:
         their_public_key.verify_key.verify(x.encode(),signature)
     except Exception:
