@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
-
-
+from nacl.exceptions import BadSignatureError
 from nacl.public import PrivateKey, Box
 from nacl.public import PublicKey
 from nacl.signing import SigningKey
@@ -84,7 +83,7 @@ outputs["problem4"] = signature.hex()
 # Problem 5
 input5_array= inputs["problem5"]
 signing_public_key=bytes.fromhex(input5_array["signing_public_key"])
-signature=input5_array["signature"]
+signature=bytes.fromhex(input5_array["signature"])
 candidates=input5_array["candidates"]
 
 their_public_key = VerifyKey(signing_public_key)
@@ -92,10 +91,9 @@ their_public_key.encode()
 for x in candidates:
 
     try:
-        their_public_key.verify_key.verify(x.encode(),signature)
-    except Exception:
-
-        continue
+        their_public_key.verify(x.encode(),signature)
+    except BadSignatureError as e:
+       continue
     outputs["problem5"] =x
     break
 
